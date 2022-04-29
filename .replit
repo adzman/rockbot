@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "rockbot"
+run = "node index.js"
