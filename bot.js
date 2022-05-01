@@ -1,6 +1,8 @@
 const { Client, Intents } = require('discord.js');
 const Database = require("@replit/database");
 
+const db = new Database();
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.on('ready', () => {
@@ -20,8 +22,8 @@ const starterRockfacts = [
   "Oral histories recount how various people used divine power to command the Rock Head statues to walk"
 ]
 
-db.get("rockfacts").then(rockfacts =>{
-  if(!rackfacts || rocksfacts.length < 1) {
+db.get("rockfacts").then(rockfacts => {
+  if (!rockfacts || rockfacts.length < 1) {
     db.set("rockfacts", starterRockfacts)
   }
 });
@@ -29,8 +31,12 @@ db.get("rockfacts").then(rockfacts =>{
 client.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
 
-  if (interaction.commandName === 'ping') { df
-    await interaction.reply('Pong!');
+  if (interaction.commandName === 'rockfact') {
+    db.get("rockfacts").then(rockfacts => {
+      const rockfact = 
+      rockfacts[Math.floor(Math.random() * rockfacts.length)]
+      interaction.reply(rockfact);
+    });
   }
 });
 

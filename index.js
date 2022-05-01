@@ -6,8 +6,8 @@ const CLIENT_ID = process.env['client_id']
 const GUILD_ID = process.env['guild_id']
 
 const commands = [{
-  name: 'ping',
-  description: 'Replies with Pong!'
+  name: 'rockfact',
+  description: 'Replies with a rock fact!'
 }]; 
 console.log(CLIENT_ID)
 const rest = new REST({ version: '9' }).setToken(token);
