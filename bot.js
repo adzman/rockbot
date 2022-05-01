@@ -1,7 +1,9 @@
 const { Client, Intents } = require('discord.js');
+const fetch = require("node-fetch")
 const Database = require("@replit/database");
 
 const db = new Database();
+const tenor = process.env['tenor_id']
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -33,12 +35,23 @@ client.on('interactionCreate', async interaction => {
 
   if (interaction.commandName === 'rockfact') {
     db.get("rockfacts").then(rockfacts => {
-      const rockfact = 
-      rockfacts[Math.floor(Math.random() * rockfacts.length)]
+      const rockfact =
+        rockfacts[Math.floor(Math.random() * rockfacts.length)]
       interaction.reply(rockfact);
     });
-  }
+
+    if (interaction.commandName === 'therock') {
+      let keywords = "the rock";
+      let url = `https://api.tenor.com/v1/search?q=therock&key=${tenor}&contentfilter=high`;
+      let response = await fetch(url);
+      let json = await response.json();
+      const index = Math.floor(Math.random() * json.results.length);
+      interaction.reply(json.results[index].url);
+      interaction.reply("GIF from Tenor: " + keywords);
+    };
+  };
 });
+
 
 const mySecret = process.env['TOKEN']
 client.login(mySecret)

@@ -7,7 +7,10 @@ const GUILD_ID = process.env['guild_id']
 
 const commands = [{
   name: 'rockfact',
-  description: 'Replies with a rock fact!'
+  description: 'Replies with a rock head fact!'
+},{
+  name: 'therock',
+  description: 'Replies with a gif of the rock!'
 }]; 
 console.log(CLIENT_ID)
 const rest = new REST({ version: '9' }).setToken(token);
