@@ -1,7 +1,7 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
-const token = process.env['TOKEN']
+const token = process.env['new_token']
 const CLIENT_ID = process.env['client_id']
 const GUILD_ID = process.env['guild_id']
 
